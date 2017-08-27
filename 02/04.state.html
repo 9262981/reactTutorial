@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>react render</title>
+		<script src="../src/react.min.js"></script>
+		<script src="../src/react-dom.min.js"></script>
+		<script src="../src/babel.min.js"></script>
+	</head>
+
+	<body>
+		<div id="root"></div>
+		<script type="text/babel">
+         var Box=React.createClass({
+            getInitialState: function() {
+               return {
+                  isVisible: true,
+                  title:'头部标题'
+               };
+            },
+            alertMe:function () {
+               alert("Why Click Me!!!???")
+            },
+            render: function() {
+               var styleOBJ={
+                  display:this.state.isVisible?'block':'none'
+               }
+               return (
+                  <div>
+                  <h1 style={styleOBJ} onClick={this.alertMe}>{this.state.title}!!!</h1>
+                  <Content/>
+                  </div>
+               );
+            }
+         })
+         var Content=React.createClass({
+            render: function() {
+               return (
+                  <h1>content</h1>
+               );
+            }
+         })
+         var App=ReactDOM.render(
+            <Box/>,
+            document.getElementById('root')  
+         )
+		</script>
+	</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html >
+   <html lang="zh">
+
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>react state</title>
+      <script src="../src/react.min.js"></script>
+      <script src="../src/react-dom.min.js"></script>
+      <script src="../src/babel.min.js"></script>
+   </head>
+
+   <body>
+      <div id="root"></div>
+      <script type="text/babel">
+         var FromApp = React.createClass({
+            getInitialState: function() {
+               return {
+                  inputValue: 'input value...',
+                  selectValue:'A',
+                  radioValue: 'B',
+                  checkValues:[],
+                  textareaValue:'some Text Here...'
+               };
+            },
+            handleSubmit:function(e){
+   				e.preventDefault();
+               // console.log(this.refs['goodInput'].value)
+               // console.log(this.refs['goodSelect'].value)
+               // console.log(this.refs['goodText'].value)
+
+               var formDate={
+                  input:this.state.value,
+                  select:this.refs['goodSelect'].value,
+                  textarea:this.refs['goodText'].value,
+                  radio:this.state.radioValue,
+                  check:this.state.checkValues,
+               }
+               console.log(formDate);  
+               this.refs.goodRadio1.saySomething();
+            },
+            handleRadio:function (e) {
+               this.setState({
+                  radioValue:e.target.value,
+               })
+               console.log(e.target.value)
+            },
+
+            handleCheck:function (e) {
+               var checkValues=this.state.checkValues.slice();
+               var newVal=e.target.value;
+               var index=checkValues.indexOf(newVal);
+               if(index==-1){
+                  checkValues.push(newVal)
+               }else{
+                  checkValues.splice(index,1)
+               }
+               this.setState({
+                  checkValues:checkValues
+               })
+            },
+            render: function() {
+               return (
+                  <div>
+                     <form onSubmit={this.handleSubmit}>
+                     	<input ref={function (comp) {ReactDOM.findDOMNode(comp).focus()}} autofocus type="text" defaultValue={this.state.inputValue} onChange={this.handleInput}/>
+                     	<br/>
+
+                     	<select ref="goodSelect" defaultValue={this.state.selectValue}>
+                     		<option value="A">A</option>
+                     		<option value="B">B</option>
+                     		<option value="C">C</option>
+                     		<option value="D">D</option>
+                     	</select>
+						<br/>
+
+						<p>Radio Button</p>  
+                     	<RadioButton ref="goodRadio1" handleRadio={this.handleRadio}/>
+             			<br/>        	
+						<p>Check Button</p>
+						      <SelectButton handleCheck={this.handleCheck}/>
+						<br/>
+
+						<textarea ref="goodText" defaultValue={this.state.textareaValue} name="" id="" cols="30" rows="10"></textarea>
+						<button type="submit">submit</button>
+                     </form>
+                  </div>
+               );
+            }
+         })
+
+         var RadioButton=React.createClass({
+            saySomething:function () {
+               alert("111"); 
+            },
+            render:function () {
+               return (
+                     <span>
+                        A<input onChange={this.props.handleRadio} name="goodRadio" type="radio"  value="A"/>
+                        B<input onChange={this.props.handleRadio} name="goodRadio" type="radio" value="B"/>
+                        C<input onChange={this.props.handleRadio} name="goodRadio" type="radio" value="C"/>
+                     </span>
+                  )
+            }
+         });
+         var SelectButton=React.createClass({
+            render:function () {
+               return (
+                     <span>
+                        A<input onChange={this.props.handleCheck} name="goodCheckbox" type="checkbox" value="A"/>
+                        B<input onChange={this.props.handleCheck} name="goodCheckbox" type="checkbox" value="B"/>
+                        C<input onChange={this.props.handleCheck} name="goodCheckbox" type="checkbox" value="C"/>
+                     </span>
+                  )
+            }
+         })
+         var App = ReactDOM.render(
+            <FromApp/>,
+            document.getElementById('root')
+         )
+      </script>
+   </body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html >
+	<html lang="en">
+<head>
+	<meta charset="UTF-8"/>
+	<title>Document</title>
+	<script src="../src/react.min.js"></script>
+	<script src="../src/react-dom.min.js"></script>
+	<script src="../src/babel.min.js"></script>
+</head>
+<body>
+	<div id="app"></div>
+</body>
+	<script type="text/babel">
+		var Box = React.createClass({
+			getInitialState: function() {
+				return {
+					box2Message:['box2message1','box2message2','box2message3']
+				};
+			},
+			render: function() {
+				return (
+					<div>
+					<h1>{this.props.title1}</h1>
+					<Box2 message={this.state.box2Message}/>
+					</div>
+				);
+			}
+		})
+		var Box2 = React.createClass({
+			propType:{
+				message:React.PropTypes.array.isRequired,
+			},
+			getDefaultProps:function () {
+				return {
+					message:["默认子消息"],
+				}
+			},
+			render: function() {
+				var msgs=[];
+				this.props.message.forEach(function (msg,index) {
+					msgs.push(
+						<p>box2Say:{msg}{index}</p>		
+					)
+				})
+				return (
+					<div>{msgs}</div>
+				);
+			}
+		})
+
+		var title="来自props的title";
+
+		var App = ReactDOM.render(
+			<Box title1={title}/>,
+			document.getElementById('app')
+		)
+	</script>
+</html>

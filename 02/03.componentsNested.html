@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>react render</title>
+		<script src="../src/react.min.js"></script>
+		<script src="../src/react-dom.min.js"></script>
+		<script src="../src/babel.min.js"></script>
+	</head>
+
+	<body>
+		<div id="root"></div>
+		<script type="text/babel">
+   			var TextBox = React.createClass({
+   				render:function  () {
+   					var header=[];
+   					for(var i=0 ;i<5;i++){
+   						header.push(<Header key={i}/>)
+   					}
+   					return  (
+   							<div>
+   								{header}
+   								<h5>你好世界!!!!</h5>
+   								<Footer/>
+   							</div>
+   							)
+   				}
+   			})
+   			var Header = React.createClass({
+   				render:function(){
+   					return (
+	   					<div>
+	   						<h1>头部</h1>
+	   					</div>
+   					);
+   				}
+   			});
+   			var Footer = React.createClass({
+   				render:function(){
+   					return (<h1>Footer</h1>)
+   				}
+   			})
+
+   			ReactDOM.render(
+				<TextBox/>,
+				document.getElementById('root'),
+				function(){
+					console.log("renderComplete");
+				}
+			)
+		</script>
+	</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>react render</title>
+	<script src="../src/react.min.js"></script>
+	<script src="../src/react-dom.min.js"></script>
+	<script src="../src/babel.min.js"></script>
+	<link href="../src/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<style type="text/css">
+		.mt{margin-top: 8px;margin-right: 5px;}
+	</style>
+</head>
+
+<body>
+	<div id="root"></div>
+	<script type="text/babel">
+		function formatName(user) {
+		  return user.firstName + ' ' + user.lastName;
+		}
+		
+		const user = {
+		  firstName: 'Harper',
+		  lastName: 'Perez'
+		};
+		
+		const element = (
+		  <h1>
+		    Hello, {formatName(user)}!
+		  </h1>
+		);
+		
+		ReactDOM.render(
+		  element,
+		  document.getElementById('root')
+		);
+
+
+	</script>
+</body>
+
+</html>

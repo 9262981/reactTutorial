@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>react render</title>
+		<script src="../src/react.min.js"></script>
+      <script src="../src/react-dom.min.js"></script>
+      <script src="../src/babel.min.js"></script>
+	</head>
+
+	<body>	
+		<div id="root"></div>
+		<NotesList />
+	</body>
+	<script type="text/babel">
+		var notepad = {
+		    notes: [
+		        {
+		            id: 1,
+		            content: "Hello, world!\nBoring.\nBoring.\nBoring."
+		        },
+		        {
+		            id: 2,
+		            content: "React is awesome.\nSeriously, it's the greatest."
+		        },
+		        {
+		            id: 3,
+		            content: "Robots are pretty cool.\nRobots are awesome, until they take over."
+		        },
+		        {
+		            id: 4,
+		            content: "Monkeys.\nWho doesn't love monkeys?"
+		        }
+		    ]
+		};
+
+		var NotesList = React.createClass({
+		    render: function () {
+		        var notes = this.props.notepad.notes;
+		    
+		        return (
+		            <div className="note-list">
+		                {
+		                    notes.map(function (note) {
+		                        var title = note.content.substring(0,note.content.indexOf('\n')
+		                        );
+		                        title = title || note.content;
+		                    
+		                        return (
+		                            <div key={note.id} className="note-summary">{title}</div>
+		                        );
+		                    })
+		                }
+		            </div>
+		        );
+		    }
+		});
+
+		ReactDOM.render(
+		    <NotesList notepad={notepad}/>,
+		    document.body
+		);
+	</script>
+</html>

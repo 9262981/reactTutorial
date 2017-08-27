@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>react render</title>
+		<script src="../src/react.min.js"></script>
+		<script src="../src/react-dom.min.js"></script>
+		<script src="../src/babel.min.js"></script>
+	</head>
+
+	<body>
+		<div id="root"></div>
+		<script type="text/babel">
+   			var TextBox=React.createClass({
+   				alertMe:function(){
+   					alert('Why; you click me!???')
+   				},
+   				render:function  () {
+   					return <h1 onClick={this.alertMe}>你好世界!!!!</h1>
+   				}
+   			})
+   			ReactDOM.render(
+				<TextBox/>,
+				document.getElementById('root'),
+				function(){
+					console.log("renderComplete");
+				}
+			)
+		</script>
+	</body>
+</html>

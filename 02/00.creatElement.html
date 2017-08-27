@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>react render</title>
+		<script src="../src/react.min.js"></script>
+      <script src="../src/react-dom.min.js"></script>
+      <script src="../src/babel.min.js"></script>
+	</head>
+
+	<body>	
+		<div id="root" props="13"></div>
+		<App>
+	</body>
+	<script type="text/babel">
+		ReactDOM.render(
+		    React.createElement('div', {13:123}, 'Hello, world!'), 
+		    document.getElementById('root')
+		);
+
+	</script>
+</html>
