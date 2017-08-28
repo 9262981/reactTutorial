@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Updating the Rendered Element</title>
+    <script src="../src/react.min.js"></script>
+    <script src="../src/react-dom.min.js"></script>
+    <script src="../src/babel.min.js"></script>
+    <link href="../src/bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      // function Welcome(props) {
+      //   return <h1>Hello, {props.name}</h1>;
+      // }
+
+         const Welcome=(props)=>(
+         <h1>Hello, {props.name}</h1>
+        )
+
+      function App() {
+        return (
+          <div>
+            <Welcome name="Sara" />
+            <Welcome name="Cahal" />
+            <Welcome name="Edite" />
+          </div>
+        );
+      }
+
+      ReactDOM.render(
+        <App />,
+        document.getElementById('root')
+      );
+    </script>
+  </body>
+
+</html>
