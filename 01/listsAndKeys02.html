@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+  <html lang="zh">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lists and Keys</title>
+  <script src="../src/react.min.js"></script>
+  <script src="../src/react-dom.min.js"></script>
+  <script src="../src/babel.min.js"></script>
+  <link href="../src/bootstrap.min.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    function NumberList(props) {
+      const numbers = props.numbers;
+      const listItems = numbers.map((number) =>
+        <li>{number}</li>
+      );
+      return (
+        <ul>{listItems}</ul>
+      );
+    }
+
+    const numbers = [1, 2, 3, 4, 5];
+    ReactDOM.render(
+      <NumberList numbers={numbers} />,
+      document.getElementById('root')
+    );
+  </script>
+</body>
+
+</html>
